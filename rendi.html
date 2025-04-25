@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animasi Sederhana Minecraft</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            background-color: #87CEEB; /* Langit biru */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="minecraftCanvas" width="800" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById('minecraftCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let x = 0; // Posisi X untuk animasi
+        let y = 400; // Posisi Y untuk karakter
+
+        function drawCharacter() {
+            ctx.fillStyle = 'green'; // Warna karakter
+            ctx.fillRect(x, y, 50, 50); // Menggambar karakter sebagai kotak
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Menghapus canvas
+        }
+
+        function animate() {
+            clearCanvas(); // Hapus canvas sebelum menggambar ulang
+            drawCharacter(); // Gambar karakter
+            x += 2; // Pergerakan karakter ke kanan
+
+            // Reset posisi jika karakter keluar dari canvas
+            if (x > canvas.width) {
+                x = -50; // Mulai dari kiri lagi
+            }
+
+            requestAnimationFrame(animate); // Panggil animate secara berulang
+        }
+
+        animate(); // Mulai animasi
+    </script>
+</body>
+</html>
